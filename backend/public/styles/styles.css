@@ -1,0 +1,303 @@
+/* ---- Allgemeine Stile ---- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+	background-color: white;
+	background-image: url(https://65e81151f52e248c552b-fe74cd567ea2f1228f846834bd67571e.ssl.cf1.rackcdn.com/BMW/2019-Sales-Event/2019_SSS_Packshot.jpg);
+	height:650px;
+	background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+}
+
+.header h1 a {
+    color: #f2f2f2;
+    text-decoration: none;
+	font-size: 50pt;
+	text-align: center;
+	margin-left: 1em;
+	margin-top: 1em;
+}
+
+/* ---- Menü ---- */
+
+.sticky-menu-container {
+    position: sticky;
+	height:30px;
+    top: 0;
+    z-index: 1000; /* Stelle sicher, dass das Menü über anderen Elementen liegt */
+    background-color: white; /* Hintergrundfarbe für das Sticky-Menü */
+	border: 0px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding: 1em;
+    margin: auto;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+nav ul li {
+    margin-right: 1em;
+}
+
+nav ul li a {
+    color: black;
+    text-decoration: none;
+	font-size: 13pt;
+	margin-left: 1em;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	width: 10px;
+	margin: 0 27em; /* Abstand links und rechts vom Logo */
+}
+
+.logo {
+    height: 30px; /* Passe die Höhe des Bildes nach Bedarf an */
+    max-height: 100%;
+}
+
+.logotext {
+    padding-top: 50px;
+    font-size: 20pt;
+    color: black;
+	
+}
+
+.container {
+    width: 80%;
+	height: auto;
+    margin: 0 auto;
+}
+
+.container img { 
+	object-fit: cover; 
+	width: 100%; 
+	height: 100%;
+}
+
+header {
+    background-color: white;
+    color: black;
+    padding: 0;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* ---- Main ---- */
+
+main {
+    padding: 0em 0;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 2em;
+	margin-top: 4em;
+}
+
+.products h2 {
+    text-align: center;
+	font-size: 40px;
+    margin-bottom: 1em;
+	margin-top: 2em;
+}
+
+/* ---- Product ---- */
+
+.product-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.product-item {
+    border: 0px solid #ccc;
+    padding: 1em;
+    margin: 1em;
+    width: 40%;
+    text-align: center;
+	border-radius: 18px
+}
+
+.product-item img {
+    max-width: 100%;
+    height: auto;
+	border-radius: 18px;
+	transition: transform 0.5s ease; /* Übergangseffekt */
+}
+
+.product-image-container {
+    max-width: 100%; /* Passe die Breite des Bildcontainers an */
+    overflow: hidden; /* Verstecke den überstehenden Teil des Bildes */
+	border-radius: 8px;
+}
+
+.product-item h3 {
+    margin: 0.5em 0;
+}
+
+.product-item p {
+    margin: 0.5em 0;
+}
+
+/* ---- Content ---- */
+
+.content-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.content-item {
+    border: 0px solid #ccc;
+    padding: 1em;
+    margin: 1em;
+    width: 90%; /* Passe die Breite nach Bedarf an */
+    display: flex;
+    align-items: center;
+    text-align: left;
+    border-radius: 18px;
+    background-color: #fff; /* Hintergrundfarbe für besseren Kontrast */
+}
+
+.content-item img {
+    max-width: 30%; /* Passe die Breite des Bildes an */
+    height: auto;
+    border-radius: 18px;
+    margin-right: 1em; /* Abstand zwischen Bild und Text */
+	transition: transform 0.5s ease; /* Übergangseffekt */
+}
+
+.image-container {
+    max-width: 30%; /* Passe die Breite des Bildcontainers an */
+    overflow: hidden; /* Verstecke den überstehenden Teil des Bildes */
+	border-radius: 8px;
+}
+
+.image {
+    width: 100%; /* 100% Breite des Containers */
+    height: 0; /* Höhe basierend auf dem Seitenverhältnis des Bildes */
+    padding-top: 56.25%; /* Seitenverhältnis (z.B. 16:9) */
+    background-size: cover; /* Bild so skalieren, dass es den gesamten Container abdeckt */
+    background-position: center; /* Zentriere das Bild im Container */
+    transition: transform 0.3s ease; /* Übergangseffekt */
+}
+
+.image:hover {
+    transform: scale(1.1); /* Vergrößert das Bild bei Hover */
+}
+
+.content-item-text {
+    display: flex;
+	margin-left: 1em;
+    flex-direction: column;
+    flex: 1; /* Lässt den Text den verbleibenden Platz einnehmen */
+}
+
+.content-item h3 {
+    margin: 0.5em 0;
+}
+
+.content-item p {
+    margin: 0.5em 0;
+}
+
+.content-item div {
+    flex: 1; /* Lässt den Text den verbleibenden Platz einnehmen */
+}
+
+/* ---- Merchendise ---- */
+
+.merch-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+}
+
+.merch-item {
+    border: 0px solid #ccc;
+    padding: 1em;
+    margin: 1em;
+    width: 20%;
+    text-align: center;
+	border-radius: 18px
+}
+
+.merch-image-container {
+    max-width: 100%; /* Passe die Breite des Bildcontainers an */
+    max-height:100%;
+	overflow: hidden; /* Verstecke den überstehenden Teil des Bildes */
+	border-radius: 8px;
+}
+
+.merch-image {
+    width: 100%; /* 100% Breite des Containers */
+    height: 100%; /* Höhe basierend auf dem Seitenverhältnis des Bildes */
+    padding-top: 100%; /* Seitenverhältnis (z.B. 16:9) */
+    background-size: cover; /* Bild so skalieren, dass es den gesamten Container abdeckt */
+    background-position: center; /* Zentriere das Bild im Container */
+    transition: transform 0.3s ease; /* Übergangseffekt */
+}
+
+.merch-image:hover {
+    transform: scale(1.1); /* Vergrößert das Bild bei Hover */
+}
+
+/* ---- Button ---- */ 
+
+button {
+    width: 30%;
+	background-color: transparent;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 1em 1em;
+    cursor: pointer;
+	border-radius: 10px;
+}
+
+button:hover {
+    background-color: lightgray;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+@media (max-width: 768px) {
+    .product-item {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-item {
+        width: 100%;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 0.5em 0;
+    }
+}
+

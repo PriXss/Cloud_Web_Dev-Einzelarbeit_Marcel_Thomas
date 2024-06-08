@@ -1,0 +1,232 @@
+/* ---- Menü ---- */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.sticky-menu-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Stelle sicher, dass das Menü über anderen Elementen liegt */
+    background-color: white; /* Hintergrundfarbe für das Sticky-Menü */
+    border: 0px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 1em;
+    margin: auto;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+nav {
+    display: flex; /* Verwende Flexbox */
+    justify-content: space-between; /* Verteilt den Platz zwischen den Containern */
+    align-items: center; /* Zentriert die Kinder vertikal */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+nav ul li {
+    margin-right: 1em;
+	text-decoration: none;
+}
+
+nav ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 13pt;
+    margin-left: 1em;
+}
+
+.shopping-cart-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+	border: 0px solid #ccc;
+}
+
+.shopping-cart-container img {
+    height: 30px; /* Passe die Höhe des Bildes an */
+    max-height: 100%;
+}
+
+.container {
+    width: 80%;
+	height: auto;
+    margin: 0 auto;
+}
+
+.container img { 
+	object-fit: cover; 
+	width: 100%; 
+	height: 100%;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 2em;
+	margin-top: 4em;
+}
+
+.products h2 {
+    text-align: center;
+	font-size: 40px;
+    margin-bottom: 1em;
+	margin-top: 2em;
+}
+
+/* ---- Product ---- */
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+	align-items: center; /* Vertikal zentrieren */
+	justify-content: center; /* Horizontal zentrieren */
+}
+
+.product-item {
+    border: 0px solid #ccc;
+    padding: 1em;
+    margin: 1em;
+    width: 30%;
+    text-align: center;
+	border-radius: 18px
+}
+
+.product-item img {
+    max-width: 50%;
+    height: auto;
+	border-radius: 18px;
+	transition: transform 0.5s ease; /* Übergangseffekt */
+}
+
+.product-image-container {
+	display: flex;
+    max-width: 100%; /* Passe die Breite des Bildcontainers an */
+    overflow: hidden; /* Verstecke den überstehenden Teil des Bildes */
+	border-radius: 8px;
+	justify-content: center;
+    align-items: center;
+}
+
+.image {
+    width: 70%; 
+    height: 0; /* Höhe basierend auf dem Seitenverhältnis des Bildes */
+    padding-top: 56.25%; /* Seitenverhältnis (z.B. 16:9) */
+    background-size: cover; /* Bild so skalieren, dass es den gesamten Container abdeckt */
+    background-position: center; /* Zentriere das Bild im Container */
+    transition: transform 0.3s ease; /* Übergangseffekt */
+}
+
+.product-item h3 {
+    margin: 0.5em 0;
+}
+
+.product-item p {
+    margin: 0.5em 0;
+}
+
+/* ---- ShoppingCart ---- */
+
+.cart-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-around;
+	border: 1px solid #ccc;
+	border-radius: 18px;
+	margin: 2em;
+}
+
+.cart-item {
+    padding: 1em;
+    margin: 1em;
+    width: 50%; /* Passe die Breite nach Bedarf an */
+    display: flex;
+    align-items: center;
+    text-align: left;
+    border-radius: 18px;
+    background-color: #fff; /* Hintergrundfarbe für besseren Kontrast */
+	border: 0px solid #ccc;
+	border-radius: 18px;
+}
+
+.ButtonContainer {
+    padding: 1em;
+    margin: 1em;
+    width: 90%; /* Passe die Breite nach Bedarf an */
+    display: flex;
+    align-items: center;
+    text-align: left;
+    border-radius: 18px;
+    background-color: #fff; /* Hintergrundfarbe für besseren Kontrast */
+	border-radius: 18px
+}
+
+.cart-item img {
+    max-width: 30%; /* Passe die Breite des Bildes an */
+    height: auto;
+    border-radius: 18px;
+    margin-right: 1em; /* Abstand zwischen Bild und Text */
+	transition: transform 0.5s ease; /* Übergangseffekt */
+}
+
+.image-container {
+    max-width: 30%; /* Passe die Breite des Bildcontainers an */
+    overflow: hidden; /* Verstecke den überstehenden Teil des Bildes */
+	border-radius: 8px;
+}
+
+.image:hover {
+    transform: scale(1.1); /* Vergrößert das Bild bei Hover */
+}
+
+.cart-item-text {
+    display: flex;
+	margin-left: 1em;
+    flex-direction: column;
+    flex: 1; /* Lässt den Text den verbleibenden Platz einnehmen */
+}
+
+.cart-item h3 {
+    margin: 0.5em 0;
+}
+
+.cart-item p {
+    margin: 0.5em 0;
+}
+
+.cart-item div {
+    flex: 1; /* Lässt den Text den verbleibenden Platz einnehmen */
+}
+
+/* ---- Button ---- */ 
+
+button {
+    width: 30%;
+	background-color: transparent;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 1em 1em;
+    cursor: pointer;
+	border-radius: 10px;
+}
+
+button:hover {
+    background-color: lightgray;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+

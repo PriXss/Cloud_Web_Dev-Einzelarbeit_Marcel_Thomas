@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HHZ Super Cars</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+	<link rel="stylesheet" href="../styles/modelle.css">
+	
+</head>
+<body>
+    <header>	
+    </header>
+    
+	<main>
+		<div class="sticky-menu-container">
+			<nav>
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="modelle">Modelle</a></li>
+						<li><a href="konfigurator.html">Konfigurator</a></li>
+						<li><a href="sucarex.html">Supercar Experience</a></li>
+						<li><a href="merch">Shop</a></li>
+						<li><a href="testdrive.html">Testdrive</a></li>
+					</ul>
+			</nav>
+		</div>
+        <div class="container">            
+            <section class="products">
+                <h2>Wählen Sie Ihr Traumauto </h2>              
+					<div class="model-grid">
+					<% products.forEach(function(product) { %>
+						<a href="konfigurator.html" class="grid-link">
+								<div class="grid-container">
+									<img src="http://localhost:9000/productimages/<%=product.filename%>" alt="Bild" class="top-center"/>
+									<div class="text-left">
+									<h3><%= product.name %></h3>
+									<p><%= product.description %></p>
+									<p>Ab $<%= product.price %> € inkl. MwSt.</p>
+									</div>
+									<div class="bottom-center">
+									<p>300PS/220kW 300PS/220kW 300PS/220kW 300PS/220kW</p>
+									</div>
+								</div>
+						</a>   
+					<% }); %>
+				</div>	
+			</section>
+		
+		</div>
+    </main>
+	
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Online Shop. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+	
+<script src="scripts.js"></script>
+
+</body>
+</html>

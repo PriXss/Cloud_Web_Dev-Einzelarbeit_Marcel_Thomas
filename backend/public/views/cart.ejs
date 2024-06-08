@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HHZ Super Cars</title>
+    <link rel="stylesheet" href="../styles/shop.css">
+</head>
+<body>
+    <header>	
+    </header>
+    
+    <main>
+        <div class="sticky-menu-container">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="modelle">Modelle</a></li>
+                    <li><a href="konfigurator.html">Konfigurator</a></li>
+                    <li><a href="sucarex.html">Supercar Experience</a></li>
+                    <li><a href="shop">Shop</a></li>
+                    <li><a href="testdrive.html">Testdrive</a></li>
+                </ul>
+                
+				<div class="shopping-cart-container">
+					<nav>
+						<a href="cart.html">Warenkorb</a>
+							<a href="cart.html">
+                        <img src="https://i.pinimg.com/originals/15/4f/df/154fdf2f2759676a96e9aed653082276.png" alt="Shopping Cart" />
+                    </nav>
+					</a>
+				</div>
+            </nav>
+        </div>
+        <div class="container">
+            <section class="products">
+                <h2>Warenkorb</h2>
+					<div class="cart-grid">
+                        <% let i = 0 %>
+                        <% products.forEach(function(product) { %>
+						<div class="cart-item">
+							<div class="image-container">
+								<div class="image" style="background-image: url(https://png.pngtree.com/png-vector/20240124/ourmid/pngtree-isolated-black-t-shirt-png-image_11479983.png)"></div>
+							</div>
+							<div class="cart-item-text">
+								<h3><%= product.name %></h3>
+								<p><%= product.price %></p>
+								<button onclick="">Entfernen</button>
+							</div>
+						</div>
+                        <% i += Number(product.price)%>
+                        <% }); %>
+                        <h3> Gesamtpreis: <%= i.toFixed(2) %>€</h3>
+					<div class="ButtonContainer">
+						<button onclick="">Kauf abschließen</button>
+					</div>  
+					</div>	
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Online Shop. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+    
+<script src="scripts.js"></script>
+</body>
+</html>

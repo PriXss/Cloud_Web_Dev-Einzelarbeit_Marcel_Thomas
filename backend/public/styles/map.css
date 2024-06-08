@@ -1,0 +1,33 @@
+
+
+/* ---- Map ---- */
+
+#map {
+    height: 500px; /* Passen Sie die Höhe nach Bedarf an */
+    width: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.map-image-container {
+    max-width: 80%; /* Passe die Breite des Bildcontainers an */
+    overflow: hidden; /* Verstecke den überstehenden Teil des Bildes */
+	border-radius: 8px;
+	padding:1em;
+	margin:1em;
+}
+
+.map-image {
+    width: 100%; /* 100% Breite des Containers */
+    height: 0; /* Höhe basierend auf dem Seitenverhältnis des Bildes */
+    padding-top: 56.25%; /* Seitenverhältnis (z.B. 16:9) */
+    background-size: cover; /* Bild so skalieren, dass es den gesamten Container abdeckt */
+    background-position: center; /* Zentriere das Bild im Container */
+}
+
+
+

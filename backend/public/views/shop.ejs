@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HHZ Super Cars</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <header>	
+    </header>
+    
+	<main>
+		<div class="sticky-menu-container">
+			<nav>
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="modelle">Modelle</a></li>
+						<li><a href="konfigurator.html">Konfigurator</a></li>
+						<li><a href="sucarex.html">Supercar Experience</a></li>
+						<li><a href="merch">Shop</a></li>
+                        <li><a href="testdrive.html">Testdrive</a></li>
+					</ul>
+			</nav>
+		</div>
+        <div class="container">
+            
+
+            <section class="products">
+                <h2>Shop</h2>
+				<div class="product-grid">
+                    <% products.forEach(function(product) { %>
+                    <div class="product-item">
+                        <div class="product-image-container">
+							<div class="image" style="background-image: url(https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)"></div>
+						</div>
+						<h3><%= product.name %></h3>
+                        <p><%= product.description %></p>
+                        <p>Preis: <%= product.price %>€</p>
+                        <button onclick="addItemToShoppingCart('<%=product.name%>','<%=product.price%>')">Zum Warenkorb hinzufuegen</button>
+                    </div>
+                    <% }); %>
+				</div>	
+            </section>
+			
+			
+		
+		</div>
+    </main>
+	
+	
+	
+	
+	
+	
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Online Shop. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+	
+<script src="./script/scripts.js"></script>
+
+</body>
+</html>

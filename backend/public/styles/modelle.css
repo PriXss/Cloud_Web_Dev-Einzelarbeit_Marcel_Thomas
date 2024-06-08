@@ -1,0 +1,76 @@
+
+
+/* ---- Modelle ---- */
+
+.model-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+	align-items: center; /* Vertikal zentrieren */
+	justify-content: center; /* Horizontal zentrieren */
+}
+
+/* ---- Modelle grid ---- */
+
+.grid-container {
+    display: grid;
+	border: 1px solid #ccc;
+	padding: 1em;
+    margin: 2em;
+    grid-template-areas: 
+		"header header header"
+        "middle middle middle"
+        "footer footer footer";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 350px;
+	height: 450px;
+	border-radius: 18px
+}
+
+.top-center {
+    grid-area: header;
+    align-self: center; /* Vertikal zentrieren innerhalb des Header-Bereichs */
+    justify-self: center; /* Horizontal zentrieren */
+    max-width: 100%; /* Bildgröße anpassen */
+    max-height: 100%;
+}
+
+.text-left {
+    grid-area: middle;
+	max-width: 100%;
+	width: 100%;
+    align-self: center; /* Vertikal zentrieren innerhalb des linken Bereichs */
+    justify-self: start; /* Links ausrichten */
+}
+
+.bottom-center {
+    grid-area: footer;
+    align-self: center; /* Vertikal zentrieren innerhalb des Footer-Bereichs */
+    justify-self: center; /* Horizontal zentrieren */
+	width: 100%;
+	height: 100%;
+}
+
+/* Optional: Stil für die Text- und Containerinhalte */
+.bottom-center p {
+    margin: 0;
+    padding: 1em;
+    background-color: #f0f0f0; /* Beispielhintergrund, anpassen nach Bedarf */
+    border-radius: 10px; /* Abgerundete Ecken, anpassen nach Bedarf */	
+}
+
+.grid-link {
+    display: block;
+    text-decoration: none; /* Entfernt die Standard-Textdekoration für Links */
+    color: inherit; /* Erbt die Textfarbe vom Container */
+	transition: box-shadow 0.3s ease; /* Übergang für den Schatten */
+}
+
+.grid-link:hover .grid-container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Schatten beim Hover */
+}
+
+
+
+
