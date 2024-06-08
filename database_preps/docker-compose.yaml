@@ -1,6 +1,6 @@
 services:
 
-  minioproducts:
+  miniohotels:
     image: 'minio/minio:latest'
     ports:
       - '9000:9000'
@@ -13,13 +13,13 @@ services:
     command: server --console-address ":9090" /data
     restart: always
 
-  mysqldbproducts:
+  mysqldbhotels:
     platform: linux/x86_64
     image: mysql:5.7   
     container_name: mysqldbproducts
     environment:
       MYSQL_ROOT_PASSWORD: testpassword
-      MYSQL_DATABASE: productinformation
+      MYSQL_DATABASE: hotelinformation
       MYSQL_USER: test
       MYSQL_PASSWORD: testpassword
       TZ: Europe/Berlin
@@ -29,134 +29,19 @@ services:
       - mysqlVolumeProducts:/var/lib/mysql
       - ./database_setup.sql:/docker-entrypoint-initdb.d/database_setup.sql
       
-  phpmyadminproducts:
+  phpmyadminhotels:
     image: phpmyadmin/phpmyadmin  
-    container_name: phpadminproducts
+    container_name: phpadminhotels
     environment:
-      PMA_HOST: mysqldbproducts
+      PMA_HOST: mysqldbhotels
     restart: always
     ports:
       - 8081:80
- #---------------------------------------Alex init----------------------------------
-  mysqldbmerch:
-    platform: linux/x86_64
-    image: mysql:5.7
-    container_name: mysqldbmerch
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: merchDB
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-      TZ: Europe/Berlin
-    ports:
-      - "3307:3306"
-    volumes:
-      - mysqlVolumeMerch:/var/lib/mysql
-      - ./DatabaseDumpMerch.sql:/docker-entrypoint-initdb.d/DatabaseDumpMerch.sql
-  
-  phpmyadminmerch:
-    image: phpmyadmin/phpmyadmin    
-    container_name: phpadminmerch
-    environment:
-      PMA_HOST: mysqldbmerch
-    restart: always
-    ports:
-      - 8082:80
-
-  mysqldbsupercar:
-    platform: linux/x86_64
-    image: mysql:5.7
-    container_name: mysqldbsupercar
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: supercarDB
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-      TZ: Europe/Berlin
-    ports:
-      - "3308:3306"
-    volumes:
-      - mysqlVolumeSupercar:/var/lib/mysql
-      - ./DatabaseDumpSupercar.sql:/docker-entrypoint-initdb.d/DatabaseDumpSupercar.sql
-  
-  phpmyadminsupercar:
-    image: phpmyadmin/phpmyadmin    
-    container_name: phpadminsupercar
-    environment:
-      PMA_HOST: mysqldsupercar
-    restart: always
-    ports:
-      - 8083:80
-
-  redis:
-    image: redis
-    container_name: redis
-    restart: always
-    ports:
-      - "6379:6379"
-    environment:
-      REDIS_PASSWORD: secret
-      
-  redis-insight:
-    image: redis/redisinsight:latest
-    container_name: redis_insights
-    restart: always
-    ports:
-      - "5540:5540"
-    volumes:
-      - redisInsightVolume:/data
-
-  miniomerch:
-    image: 'minio/minio:latest'
-    ports:
-      - '9001:9001'
-      - '9091:9091'
-    env_file: miniomerch.env
-    networks:
-      - s3-data
-    volumes:
-      - 'minio-data:/data'
-    command: server --console-address ":9090" /data
-    restart: always
- #---------------------------------------Alex init over----------------------------------
-
-
- #---------------------------------------Vika init over----------------------------------
-
-  mysqldbroute:
-    platform: linux/x86_64
-    image: mysql:5.7
-    container_name: mysqldbroute
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: mysqldbroute
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-      TZ: '+02:00'
-    ports:
-      - "3309:3306"
-    volumes:
-      - mysqlVolumeRoute:/var/lib/mysql
-      - ./DatabaseCoords.sql:/docker-entrypoint-initdb.d/DatabaseCoords.sql
-
-  phpmyadminroute:
-    image: phpmyadmin/phpmyadmin
-    environment:
-      PMA_HOST: mysqldbroute
-    restart: always
-    ports:
-      - "8084:80"
- #---------------------------------------Vika init over----------------------------------
-
-
+ 
 volumes:
   minio-data:
     driver: local
   mysqlVolumeProducts:
-  mysqlVolumeMerch:
-  mysqlVolumeSupercar:
-  redisInsightVolume:
-  mysqlVolumeRoute:
 
 
 networks:
