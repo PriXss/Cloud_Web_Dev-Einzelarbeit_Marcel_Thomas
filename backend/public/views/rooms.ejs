@@ -16,9 +16,10 @@
 		<div class="sticky-menu-container">
 			<nav>
 					<ul>
-						<li><a href="Rooms">Rooms</a></li>
-						<li><a href="Events">Eevents</a></li>
-						<li><a href="Impresssions">Impressions</a></li>
+						<li><a href="/">Home</a></li>
+						<li><a href="rooms">Rooms</a></li>
+						<li><a href="events">Events</a></li>
+                        <li><a href="impressions">Impressions</a></li>
 					</ul>
 			</nav>
 		</div>
@@ -26,14 +27,14 @@
             <section class="products">
                 <h2>Wählen Sie Ihr Traumauto </h2>              
 					<div class="model-grid">
-					<% products.forEach(function(product) { %>
+					<% rooms.forEach(function(room) { %>
 						<a href="konfigurator.html" class="grid-link">
 								<div class="grid-container">
-									<img src="http://localhost:9000/productimages/<%=product.filename%>" alt="Bild" class="top-center"/>
+									<img src="http://localhost:9000/productimages/<%=room.filename%>" alt="Bild" class="top-center"/>
 									<div class="text-left">
-									<h3><%= product.name %></h3>
-									<p><%= product.description %></p>
-									<p>Ab $<%= product.price %> € inkl. MwSt.</p>
+									<h3><%= room.name %></h3>
+									<p><%= room.description %></p>
+									<p>Ab $<%= room.price %> € inkl. MwSt.</p>
 									</div>
 									<div class="bottom-center">
 									<p>300PS/220kW 300PS/220kW 300PS/220kW 300PS/220kW</p>

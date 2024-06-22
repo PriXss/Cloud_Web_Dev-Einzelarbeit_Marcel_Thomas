@@ -1,17 +1,40 @@
 services:
 
-  miniohotels:
+  miniorooms:
     image: 'minio/minio:latest'
     ports:
       - '9000:9000'
       - '9090:9090'
     env_file: miniorooms.env
-    networks:
-      - s3-data
     volumes:
       - 'minio-data:/data'
     command: server --console-address ":9090" /data
     restart: always
+
+
+  minioevents:
+    image: 'minio/minio:latest'
+    ports:
+      - '9001:9001'
+      - '9091:9091'
+    env_file: minioevents.env
+    volumes:
+      - 'minio-data:/data'
+    command: server --console-address ":9091" /data
+    restart: always
+
+  minioimpressions:
+    image: 'minio/minio:latest'
+    ports:
+      - '9002:9002'
+      - '9092:9092'
+    env_file: minioimpressions.env
+    volumes:
+      - 'minio-data:/data'
+    command: server --console-address ":9092" /data
+    restart: always
+
+    
 
   mysqldbhotels:
     platform: linux/x86_64
@@ -51,7 +74,7 @@ services:
         MYSQL_PASSWORD: testpassword
         TZ: Europe/Berlin
       ports:
-        - "3310:3310"
+        - "3309:3306"
       volumes:
         - mysqlVolumeEvents:/var/lib/mysql
         - ./database_setup_events.sql:/docker-entrypoint-initdb.d/database_setup_events.sql
@@ -66,14 +89,35 @@ services:
       ports:
         - 8081:80
 
-
+  mysqldbimpressions:
+      platform: linux/x86_64
+      image: mysql:5.7   
+      container_name: mysqldbimpressions
+      environment:
+        MYSQL_ROOT_PASSWORD: testpassword
+        MYSQL_DATABASE: impressions
+        MYSQL_USER: test
+        MYSQL_PASSWORD: testpassword
+        TZ: Europe/Berlin
+      ports:
+        - "3308:3306"
+      volumes:
+        - mysqlVolumeImpressions:/var/lib/mysql
+        - ./database_setup_impressions.sql:/docker-entrypoint-initdb.d/database_setup_impressions.sql
+        
+  phpmyadminimpressions:
+      platform: linux/x86_64
+      image: phpmyadmin/phpmyadmin  
+      container_name: phpadminimpressions
+      environment:
+        PMA_HOST: mysqldbimpressions
+      restart: always
+      ports:
+        - 8082:80
  
 volumes:
   minio-data:
     driver: local
   mysqlVolumeHotels:
   mysqlVolumeEvents:
-
-networks:
-  s3-data:
-    driver: bridge
+  mysqlVolumeImpressions:
