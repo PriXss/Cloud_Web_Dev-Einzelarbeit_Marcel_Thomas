@@ -1,16 +1,16 @@
 const express = require('express');
 const mysql = require('mysql');
 const app = express();
-const port = 9095;
-
+const port = 9096;
 
 
 // Create a MySQL connection
 const db = mysql.createConnection({
   host: 'localhost',
+  port: 3310,
   user: 'test', // your MySQL username
   password: 'testpassword', // your MySQL password
-  database: 'productinformation'
+  database: 'events',
 });
 
 // Connect to MySQL
@@ -23,7 +23,7 @@ db.connect((err) => {
 
 // Route for product page
 app.get('/', (req, res) => {
-  const query = 'SELECT * FROM products';
+  const query = 'SELECT * FROM rooms';
   db.query(query, (err, results) => {
     if (err) {
       throw err;
@@ -33,9 +33,9 @@ app.get('/', (req, res) => {
   });
 });
 
-
+// Rote to only the top 4 entrys per Room
 app.get('/homepage', (req, res) => {
-  const query = 'SELECT * FROM products order by id asc limit 4';
+  const query = 'SELECT * FROM rooms order by id asc limit 4';
   db.query(query, (err, results) => {
     if (err) {
       throw err;

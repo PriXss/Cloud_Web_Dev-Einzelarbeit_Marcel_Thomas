@@ -5,7 +5,7 @@ services:
     ports:
       - '9000:9000'
       - '9090:9090'
-    env_file: minioproducts.env
+    env_file: miniorooms.env
     networks:
       - s3-data
     volumes:
@@ -16,36 +16,64 @@ services:
   mysqldbhotels:
     platform: linux/x86_64
     image: mysql:5.7   
-    container_name: mysqldbproducts
+    container_name: mysqldbrooms
     environment:
       MYSQL_ROOT_PASSWORD: testpassword
-      MYSQL_DATABASE: hotelinformation
+      MYSQL_DATABASE: hotelrooms
       MYSQL_USER: test
       MYSQL_PASSWORD: testpassword
       TZ: Europe/Berlin
     ports:
       - "3306:3306"
     volumes:
-      - mysqlVolumeProducts:/var/lib/mysql
-      - ./database_setup.sql:/docker-entrypoint-initdb.d/database_setup.sql
+      - mysqlVolumeHotels:/var/lib/mysql
+      - ./database_setup_rooms.sql:/docker-entrypoint-initdb.d/database_setup_rooms.sql
       
   phpmyadminhotels:
+    platform: linux/x86_64
     image: phpmyadmin/phpmyadmin  
     container_name: phpadminhotels
     environment:
       PMA_HOST: mysqldbhotels
     restart: always
     ports:
-      - 8081:80
+      - 8080:80
+
+
+  mysqldbevents:
+      platform: linux/x86_64
+      image: mysql:5.7   
+      container_name: mysqldbevents
+      environment:
+        MYSQL_ROOT_PASSWORD: testpassword
+        MYSQL_DATABASE: events
+        MYSQL_USER: test
+        MYSQL_PASSWORD: testpassword
+        TZ: Europe/Berlin
+      ports:
+        - "3310:3310"
+      volumes:
+        - mysqlVolumeEvents:/var/lib/mysql
+        - ./database_setup_events.sql:/docker-entrypoint-initdb.d/database_setup_events.sql
+        
+  phpmyadminevents:
+      platform: linux/x86_64
+      image: phpmyadmin/phpmyadmin  
+      container_name: phpadminevents
+      environment:
+        PMA_HOST: mysqldbevents
+      restart: always
+      ports:
+        - 8081:80
+
+
  
 volumes:
   minio-data:
     driver: local
-  mysqlVolumeProducts:
-
+  mysqlVolumeHotels:
+  mysqlVolumeEvents:
 
 networks:
-  mysql-phpmyadmin:
-
   s3-data:
     driver: bridge

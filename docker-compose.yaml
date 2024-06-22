@@ -1,0 +1,16 @@
+services:
+
+  backend-instance:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    networks:
+      - hotel-app
+    restart: always
+    ports:
+      - 2500:2500
+
+
+networks:
+  hotel-app:
+    driver: bridge

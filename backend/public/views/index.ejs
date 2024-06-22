@@ -18,11 +18,9 @@
 		<div class="sticky-menu-container">
 			<nav>
 					<ul>
-						<li><a href="modelle">Modelle</a></li>
-						<li><a href="konfigurator.html">Konfigurator</a></li>
-						<li><a href="sucarex">Supercar Experience</a></li>
-						<li><a href="merch">Shop</a></li>
-                        <li><a href="testdrive.html">Testdrive</a></li>
+						<li><a href="rooms">Rooms</a></li>
+						<li><a href="events">Events</a></li>
+                        <li><a href="impressions">Impressions</a></li>
 					</ul>
 			</nav>
 		</div>
@@ -36,15 +34,15 @@
                 <h2>Modelle</h2>
                 
 				<div class="product-grid">
-                    <% products.forEach(function(product) { %>
+                    <% rooms.forEach(function(room) { %>
                     <div class="product-item">
                         <div class="product-image-container">
 							<div class="image" style="background-image: url(https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)"></div>
 						</div>
-						<h3><%= product.name %></h3>
-                        <p><%= product.description %></p>
-                        <p>Preis: <%= product.price %>€</p>
-                        <button onclick="window.location.href='konfigurator-c1.html'">Zum Konfigurator</button>
+						<h3><%= room.name %></h3>
+                        <p><%= room.description %></p>
+                        <p>Preis: <%= room.price %>€</p>
+                        <button onclick="window.location.href='konfigurator-c1.html'">Check for available Rooms</button>
                     </div>
                     <% }); %>
 				</div>	
@@ -72,35 +70,18 @@
                 <h2>Online Shop Highlights</h2>
                 
 				<div class="merch-grid">
+                    <% events.forEach(function(event) { %>
+
                     <div class="merch-item">
                         <div class="merch-image-container">
 							<div class="merch-image" style="background-image: url(https://i.ebayimg.com/images/g/TI4AAOSwfcNeTbkj/s-l1200.webp)"></div>
 						</div>
-						<h3>T-Shirt - Jaguar</h3>
-                        <p>Jaguar Shirt - 100% Baumwolle</p>
-                        <p>Preis: €29.99</p>
-                        <button onclick="window.location.href='shop.html'">Zum Shop</button>
+						<h3><%= event.name %></h3>
+                        <p>J<%= event.description %></p>
+                        <p>Preis: €<%= event.price %></p>
+                        <button onclick="window.location.href='shop.html'">Check upcomming Events</button>
                     </div>
-					
-					<div class="merch-item">
-                        <div class="merch-image-container">
-							<div class="merch-image" style="background-image: url(https://i.ebayimg.com/images/g/TI4AAOSwfcNeTbkj/s-l1200.webp)"></div>
-						</div>
-						<h3>T-Shirt - Jaguar</h3>
-                        <p>Jaguar Shirt - 100% Baumwolle</p>
-                        <p>Preis: €29.99</p>
-                        <button onclick="window.location.href='shop.html'">Zum Shop</button>
-                    </div>
-					
-					<div class="merch-item">
-                        <div class="merch-image-container">
-							<div class="merch-image" style="background-image: url(https://i.ebayimg.com/images/g/TI4AAOSwfcNeTbkj/s-l1200.webp)"></div>
-						</div>
-						<h3>T-Shirt - Jaguar</h3>
-                        <p>Jaguar Shirt - 100% Baumwolle</p>
-                        <p>Preis: €29.99</p>
-                        <button onclick="window.location.href='shop.html'">Zum Shop</button>
-                    </div>
+                    <% }); %>
 		
 		</div>
     </main>
