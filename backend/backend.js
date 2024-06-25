@@ -85,6 +85,22 @@ app.get("/impressions", function(req, res) {
 });
 
 
+
+app.get("/weather", function(req, res) {
+	// Invoke Product Management Microservice to get the products in the shop
+	fetch("http://localhost:9098", {
+		method: 'GET',
+	})
+	.then(response => response.json())
+	.then(weatherList => {	
+		// When the products have been retrieved, render them with the productsView EJS template
+		res.render("weather", {		
+			weathers : weatherList
+		});	
+	});		
+});
+
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
