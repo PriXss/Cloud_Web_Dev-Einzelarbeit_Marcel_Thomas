@@ -8,3 +8,6 @@ CREATE TABLE IF NOT EXISTS orders (
     roomId INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO orders (input1, input2, roomId) VALUES
+('Beispiel', 'Beispiel2', 1);

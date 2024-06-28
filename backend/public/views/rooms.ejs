@@ -98,12 +98,15 @@
 					input1: input1,
 					input2: input2,
 					roomId: roomId,
-				  };
+				};
 
 				
 				
-				fetch('http://localhost:2500/placeorder', { // Change this to your actual backend endpoint
+				fetch('/placeorder', { // Change this to your actual backend endpoint
 					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
 					body: JSON.stringify(selection)
 				})
 				.then(response => response.json())

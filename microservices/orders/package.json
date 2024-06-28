@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon weather.js"
+    "start": "nodemon orders.js"
   },
   "keywords": [],
   "author": "",
@@ -12,7 +12,7 @@
   "dependencies": {
     "express": "^4.19.2",
     "mysql": "^2.18.1",
-    "mysql2": "^3.10.0",
+    "mysql2": "^3.10.1",
     "nodemon": "^3.1.2"
   }
 }

@@ -2,8 +2,9 @@ const http = require("http");
 const express = require("express");
 const app = express();
 const mysql = require("mysql2");
+var bodyParser  = require('body-parser');
 
-const port = 9777;
+const port = 7766;
 
 // DB credentials
 var con = mysql.createConnection({
@@ -24,15 +25,17 @@ con.connect((err) => {
 });
 
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 
 // user selects date and fills in name and address
 app.post("/", function (req,res){
-    let order = req.body;
-    console.log(JSON.stringify(order))
-    const sqlQuery = "INSERT INTO orders (roomId, input1, input2) VALUES (?, ?, ?)";
+    const {input1, input2, roomId} = req.body;
+    console.log("This is the variables"+input1, input2, roomId)
+    const sqlQuery = "INSERT INTO orders (input1, input2, roomId) VALUES (?, ?, ?)";
     
-    
-    con.query(sqlQuery, [order.roomId, order.input1, order.input2], function(error, result) {
+    con.query(sqlQuery, [input1, input2, roomId], function(error, result) {
         if (error) {
             console.error('Error when inserting the row into the table:', error);
             res.status(500).json({ error: 'Internal server error' });

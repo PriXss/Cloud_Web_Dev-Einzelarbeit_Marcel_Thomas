@@ -6,6 +6,8 @@ const app = express()
 const port = 2500;
 setupLogging(app);
 
+app.use(express.json()); // Use body-parser middleware to parse JSON bodies
+
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
@@ -100,10 +102,13 @@ app.get("/weather", function(req, res) {
 	});		
 });
 
+
+
 app.post('/placeorder', (req, res) => {
     let order = req.body;
-	console.log(order)
-    fetch('http:localhost:9777/', {
+	console.log(req.body)
+	console.log(JSON.stringify(req.body))
+    fetch('http:localhost:7766', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -111,13 +116,18 @@ app.post('/placeorder', (req, res) => {
         body: JSON.stringify(order)
     })
     .then(res => res.json())
-    .then(data => {
-        res.render("ordersuccess")
-    }
-
-    )
+    .then( 
+		res.render('ordersuccess')
+	)
     .catch(error => console.error('Error:', error));
 })
+
+
+
+/*
+app.use('/placeorder', httpProxy('http://localhost:7766'))
+
+*/
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
