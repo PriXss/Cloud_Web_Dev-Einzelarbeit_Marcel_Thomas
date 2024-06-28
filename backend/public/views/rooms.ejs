@@ -20,30 +20,103 @@
 						<li><a href="rooms">Rooms</a></li>
 						<li><a href="events">Events</a></li>
                         <li><a href="impressions">Impressions</a></li>
+						<li><a href="weather">Weather</a></li>
+
 					</ul>
 			</nav>
 		</div>
-        <div class="container">            
-            <section class="products">
-                <h2>Choose your Room</h2>              
-					<div class="model-grid">
+		<div class="container">
+			<section class="products">
+				<h2>Choose your Room</h2>
+				<div class="model-grid">
 					<% rooms.forEach(function(room) { %>
-						<a href="konfigurator.html" class="grid-link">
-								<div class="grid-container">
-									<img src="http://localhost:9000/productimages/<%=room.filename%>" alt="Bild" class="top-center"/>
-									<div class="text-left">
+						<a href="javascript:void(0);" class="grid-link" data-room-id="<%= room.id %>">
+							<div class="grid-container">
+								<img src="http://localhost:9000/productimages/<%= room.filename %>" alt="Bild" class="top-center"/>
+								<div class="text-left">
 									<h3><%= room.name %></h3>
 									<p><%= room.description %></p>
 									<p>Ab $<%= room.price %> € inkl. MwSt.</p>
-									</div>
-									<div class="bottom-center">
-									<p>300PS/220kW 300PS/220kW 300PS/220kW 300PS/220kW</p>
-									</div>
 								</div>
+							</div>
 						</a>   
 					<% }); %>
-				</div>	
+				</div>
 			</section>
+		</div>
+		
+		<!-- Modal Structure -->
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<form id="modalForm">
+					<input type="text" id="input1" name="input1" placeholder="Name" required />
+					<input type="text" id="input2" name="input2" placeholder="Email" required />
+					<input type="hidden" id="roomId" name="roomId" />
+					<button type="submit">Submit</button>
+				</form>
+			</div>
+		</div>
+		
+		<style>
+		.modal { display: none; /* Hidden by default */ position: fixed; /* Stay in place */ z-index: 1; /* Sit on top */ padding-top: 100px; /* Location of the box */ left: 0; top: 0; width: 100%; /* Full width */ height: 100%; /* Full height */ overflow: auto; /* Enable scroll if needed */ background-color: rgb(0,0,0); /* Fallback color */ background-color: rgba(0,0,0,0.4); /* Black w/ opacity */}
+		.modal-content { background-color: #fefefe; margin: auto; padding: 20px; border: 1px solid #888; width: 80%;}
+		.close { color: #aaa; float: right; font-size: 28px; font-weight: bold;}
+		.close:hover, .close:focus { color: black; text-decoration: none; cursor: pointer;}
+		</style>
+		
+		<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var modal = document.getElementById("myModal");
+			var span = document.getElementsByClassName("close")[0];
+		
+			document.querySelectorAll('.grid-link').forEach(function(link) {
+				link.addEventListener('click', function() {
+					var roomId = this.getAttribute('data-room-id');
+					document.getElementById('roomId').value = roomId;
+					modal.style.display = "block";
+				});
+			});
+		
+			span.onclick = function() {
+				modal.style.display = "none";
+			}
+		
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		
+			document.getElementById('modalForm').addEventListener('submit', function(event) {
+				event.preventDefault();
+				var input1= document.getElementById('input1').value;
+				var input2= document.getElementById('input2').value;
+				var roomId = document.getElementById('roomId').value;
+
+				var selection = {
+					input1: input1,
+					input2: input2,
+					roomId: roomId,
+				  };
+
+				
+				
+				fetch('http://localhost:2500/placeorder', { // Change this to your actual backend endpoint
+					method: 'POST',
+					body: JSON.stringify(selection)
+				})
+				.then(response => response.json())
+				.then(data => {
+					console.log(data); // Handle success response
+					modal.style.display = "none";
+				})
+				.catch(error => {
+					console.error('Error:', error); // Handle error
+				});
+			});
+		});
+		</script>
 		
 		</div>
     </main>
@@ -51,11 +124,9 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Online Shop. Alle Rechte vorbehalten.</p>
+            <p>&copy;2024 Hotel Service. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 	
-<script src="scripts.js"></script>
-
 </body>
 </html>

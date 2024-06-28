@@ -114,10 +114,38 @@ services:
       restart: always
       ports:
         - 8082:80
- 
+
+  mysqldborders:
+      platform: linux/x86_64
+      image: mysql:5.7   
+      container_name: mysqldborders
+      environment:
+        MYSQL_ROOT_PASSWORD: testpassword
+        MYSQL_DATABASE: orders
+        MYSQL_USER: test
+        MYSQL_PASSWORD: testpassword
+        TZ: Europe/Berlin
+      ports:
+        - "3310:3306"
+      volumes:
+        - mysqlVolumeOrders:/var/lib/mysql
+        - ./database_setup_orders.sql:/docker-entrypoint-initdb.d/database_setup_orders.sql
+        
+  phpmyadminorders:
+      platform: linux/x86_64
+      image: phpmyadmin/phpmyadmin  
+      container_name: phpadminorders
+      environment:
+        PMA_HOST: mysqldborders
+      restart: always
+      ports:
+        - 8087:80
+
+
 volumes:
   minio-data:
     driver: local
   mysqlVolumeHotels:
   mysqlVolumeEvents:
   mysqlVolumeImpressions:
+  mysqlVolumeOrders:

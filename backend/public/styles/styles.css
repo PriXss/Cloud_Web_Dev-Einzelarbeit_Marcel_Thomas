@@ -140,12 +140,12 @@ main {
     max-width: 100%;
     height: auto;
 	border-radius: 18px;
-	transition: transform 0.5s ease; /* Übergangseffekt */
+	transition: transform 0.5s ease;
 }
 
 .product-image-container {
-    max-width: 100%; /* Passe die Breite des Bildcontainers an */
-    overflow: hidden; /* Verstecke den überstehenden Teil des Bildes */
+    max-width: 100%; 
+    overflow: hidden; 
 	border-radius: 8px;
 }
 

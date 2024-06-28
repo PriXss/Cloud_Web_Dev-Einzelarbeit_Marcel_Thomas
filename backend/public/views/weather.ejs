@@ -18,43 +18,28 @@
 						<li><a href="rooms">Rooms</a></li>
 						<li><a href="events">Events</a></li>
                         <li><a href="impressions">Impressions</a></li>
+                        <li><a href="weather">Weather</a></li>
 					</ul>
 			</nav>
 		</div>
         <div class="container">
-            
-
             <section class="products">
-                <h2>Events near our Hotel</h2>
+                <h2>Check the Weather for today</h2>
 				<div class="product-grid">
-                    <% events.forEach(function(event) { %>
                     <div class="product-item">
-                        <div class="product-image-container">
-							<div class="image" style="background-image: url(https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)"></div>
-						</div>
-						<h3><%= event.name %></h3>
-                        <p><%= event.description %></p>
-                        <p>Preis: <%= event.price %>€</p>
-                        <button>About the Event</button>
+                        <h3>Today</h3>
+						<h3><%= weather.location.name %> - <%= weather.location.country%></h3>
+                        <img src= <%=weather.current.condition.icon%> alt="icon">
+                        <p><%= weather.current.condition.text %></p>
+                        <p> Temperature: <%= weather.current.temp_c %> C</p>
                     </div>
-                    <% }); %>
 				</div>	
             </section>
-			
-			
-		
 		</div>
     </main>
-	
-	
-	
-	
-	
-	
-
     <footer>
         <div class="container">
-            <p>&copy; 2024 Online Shop. Alle Rechte vorbehalten.</p>
+            <p>&copy; 2024 Hotel Service. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 	

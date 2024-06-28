@@ -1,7 +1,6 @@
 const express = require('express')
 const {setupLogging} = require("./logging/logging");
-
-
+const httpProxy = require('express-http-proxy')
 
 const app = express()
 const port = 2500;
@@ -93,13 +92,32 @@ app.get("/weather", function(req, res) {
 	})
 	.then(response => response.json())
 	.then(weatherList => {	
+		console.log(weatherList)
 		// When the products have been retrieved, render them with the productsView EJS template
 		res.render("weather", {		
-			weathers : weatherList
+			weather : weatherList
 		});	
 	});		
 });
 
+app.post('/placeorder', (req, res) => {
+    let order = req.body;
+	console.log(order)
+    fetch('http:localhost:9777/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(order)
+    })
+    .then(res => res.json())
+    .then(data => {
+        res.render("ordersuccess")
+    }
+
+    )
+    .catch(error => console.error('Error:', error));
+})
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)

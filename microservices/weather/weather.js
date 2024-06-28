@@ -3,27 +3,23 @@ const mysql = require('mysql');
 const app = express();
 const port = 9098;
 
-apiUrl = "api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=3461608697e713c9347f7ba970120eeb";
 
 
 // Route for product page
 app.get('/', (req, res) => {
-
-  fetch(apiUrl, (err,results)=> {
-    console.log(results)
-    res.send(results)
+  fetch("http://api.weatherapi.com/v1/current.json?key=575c8279b823438a85e115318242606&q=Stuttgart", {
+    method: 'GET',
   })
-});
-
-// Rote to only the top 4 entrys per Room
-app.get('/homepage', (req, res) => {
-  const query = 'SELECT * FROM events order by id asc limit 4';
-  db.query(query, (err, results) => {
-    if (err) {
-      throw err;
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-    console.log(results)
-    res.send(results);
+    return response.json(); // Parse the JSON data from the response
+  })
+  .then(data => res.send(data)) // Send the parsed data in the response
+  .catch(error => {
+    console.error('Fetch error:', error);
+    res.status(500).send('Error fetching data');
   });
 });
 
