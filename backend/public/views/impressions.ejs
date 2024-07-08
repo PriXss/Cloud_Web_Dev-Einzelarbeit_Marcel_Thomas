@@ -32,7 +32,7 @@
                     <% impressions.forEach(function(impression) { %>
                     <div class="product-item">
                         <div class="product-image-container">
-							<div class="image" style="background-image: url(https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)"></div>
+							<div class="image" style="background-image: url(http://localhost:9002/impressionimages/<%=impression.filename%>)"></div>
 						</div>
 						<h3><%= impression.name %></h3>
                         <p><%= impression.description %></p>
