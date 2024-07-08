@@ -32,7 +32,7 @@
                     <% events.forEach(function(event) { %>
                     <div class="product-item">
                         <div class="product-image-container">
-							<div class="image" style="background-image: url(https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)"></div>
+							<div class="image" src="http://localhost:9000/eventimages/<%=event.filename%>"></div>
 						</div>
 						<h3><%= event.name %></h3>
                         <p><%= event.description %></p>
@@ -42,25 +42,13 @@
                     <% }); %>
 				</div>	
             </section>
-			
-			
-		
 		</div>
     </main>
 	
-	
-	
-	
-	
-	
-
     <footer>
         <div class="container">
             <p>&copy; 2024 Hotel Service. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
-	
-<script src="./script/scripts.js"></script>
-
 </body>
 </html>

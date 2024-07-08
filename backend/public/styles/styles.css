@@ -301,3 +301,45 @@ footer {
     }
 }
 
+
+
+
+.card-container {
+    position: relative;
+    width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.card-container:hover {
+    transform: scale(1.05);
+}
+.card-image {
+    width: 100%;
+    height: auto;
+    transition: filter 0.3s ease;
+}
+.card-image:hover {
+    filter: brightness(0.8);
+}
+.card-content {
+    background-color: #ffedcc;
+    padding: 20px;
+    text-align: center;
+}
+.card-content h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+.card-content p {
+    margin: 10px 0 0;
+    font-size: 16px;
+    color: #666;
+}
+.price {
+    margin-top: 20px;
+    font-size: 24px;
+    color: #000;
+}

@@ -7,7 +7,7 @@ services:
       - '9090:9090'
     env_file: miniorooms.env
     volumes:
-      - 'minio-data:/data'
+      - './minioRooms:/data'
     command: server --console-address ":9090" /data
     restart: always
 
@@ -15,22 +15,22 @@ services:
   minioevents:
     image: 'minio/minio:latest'
     ports:
-      - '9001:9001'
+      - '9001:9000'
       - '9091:9091'
     env_file: minioevents.env
     volumes:
-      - 'minio-data:/data'
+       - './minioEvents:/data'
     command: server --console-address ":9091" /data
     restart: always
 
   minioimpressions:
     image: 'minio/minio:latest'
     ports:
-      - '9002:9002'
+      - '9002:9000'
       - '9092:9092'
     env_file: minioimpressions.env
     volumes:
-      - 'minio-data:/data'
+       - './minioImpressions:/data'
     command: server --console-address ":9092" /data
     restart: always
 
@@ -143,8 +143,7 @@ services:
 
 
 volumes:
-  minio-data:
-    driver: local
+  
   mysqlVolumeHotels:
   mysqlVolumeEvents:
   mysqlVolumeImpressions:
