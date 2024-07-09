@@ -24,18 +24,22 @@
 		</div>
         <div class="container">
             <section class="products">
-                <h2>Check the Weather for today</h2>
-				<div class="product-grid">
-                    <div class="product-item">
-                        <h3>Today</h3>
-						<h3><%= weather.location.name %> - <%= weather.location.country%></h3>
-                        <img src= <%=weather.current.condition.icon%> alt="icon">
-                        <p><%= weather.current.condition.text %></p>
-                        <p> Temperature: <%= weather.current.temp_c %> C</p>
+                <h2>Weather for today</h2>
+                <div class="product-grid">
+                    <div class="weather-widget">
+                        <div class="location"><%= weather.location.name %> - <%= weather.location.country %></div>
+                        <div class="condition">
+                            <img src="<%= weather.current.condition.icon %>" alt="icon">
+                            <div class="condition-text"><%= weather.current.condition.text %></div>
+                        </div>
+                        <div class="temperature"><%= weather.current.temp_c %>°C</div>
+                        <div class="details">Feels like: <%= weather.current.feelslike_c %>°C</div>
+                        <div class="details">Humidity: <%= weather.current.humidity %>%</div>
+                        <div class="details">Wind: <%= weather.current.wind_kph %> kph</div>
                     </div>
-				</div>	
+                </div>
             </section>
-		</div>
+        </div>
     </main>
     <footer>
         <div class="container">

@@ -8,7 +8,7 @@ body {
 
 .header {
 	background-color: white;
-	background-image: url(https://65e81151f52e248c552b-fe74cd567ea2f1228f846834bd67571e.ssl.cf1.rackcdn.com/BMW/2019-Sales-Event/2019_SSS_Packshot.jpg);
+	background-image: url(https://cdn.leonardo.ai/users/15dbbbdf-c85b-45f8-92af-f7ed1341a9ff/generations/4e8799df-147c-4d8f-b1d8-68346639ab09/Default_A_breathtaking_cinematic_photograph_of_the_majestic_Ho_0.jpg?w=512);
 	height:95vh;
 	background-size: cover; 
     background-position: center; 
@@ -207,7 +207,7 @@ main {
 
 .content-item-text {
     display: flex;
-	margin-left: 1em;
+	margin-left: 3em;
     flex-direction: column;
     flex: 1; /* Lässt den Text den verbleibenden Platz einnehmen */
 }
@@ -343,3 +343,61 @@ footer {
     font-size: 24px;
     color: #000;
 }
+
+/* Weather Widget Styles */
+.weather-widget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.3s ease;
+    margin: 1em auto;
+    margin-bottom: 30vh;
+    margin-top: 10vh;
+}
+
+.weather-widget:hover {
+    transform: scale(1.05);
+}
+
+.weather-widget .location {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.weather-widget .condition {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.weather-widget .condition img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.weather-widget .condition-text {
+    font-size: 18px;
+    color: #666;
+}
+
+.weather-widget .temperature {
+    font-size: 32px;
+    color: #000;
+    margin: 10px 0;
+}
+
+.weather-widget .details {
+    font-size: 16px;
+    color: #666;
+}
+
+

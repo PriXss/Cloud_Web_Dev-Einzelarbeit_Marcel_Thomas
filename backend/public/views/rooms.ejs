@@ -5,131 +5,185 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HHZ Super Cars</title>
     <link rel="stylesheet" href="../styles/styles.css">
-	<link rel="stylesheet" href="../styles/modelle.css">
-	
+    <link rel="stylesheet" href="../styles/modelle.css">
+    
+    <style>
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-content form {
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-content input {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .modal-content button {
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .modal-content button:hover {
+            background-color: #218838;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+    </style>
 </head>
 <body>
-    <header>	
+    <header>    
     </header>
     
-	<main>
-		<div class="sticky-menu-container">
-			<nav>
-					<ul>
-						<li><a href="/">Home</a></li>
-						<li><a href="rooms">Rooms</a></li>
-						<li><a href="events">Events</a></li>
-                        <li><a href="impressions">Impressions</a></li>
-						<li><a href="weather">Weather</a></li>
+    <main>
+        <div class="sticky-menu-container">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="rooms">Rooms</a></li>
+                    <li><a href="events">Events</a></li>
+                    <li><a href="impressions">Impressions</a></li>
+                    <li><a href="weather">Weather</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container">
+            <section class="products">
+                <h2>Choose your Room</h2>
+                <div class="model-grid">
+                    <% rooms.forEach(function(room) { %>
+                        <a href="javascript:void(0);" class="grid-link" data-room-id="<%= room.id %>">
+                            <div class="grid-container">
+                                <img src="http://localhost:9000/roomimages/<%= room.filename %>" alt="Bild" class="top-center"/>
+                                <div class="text-left">
+                                    <h3><%= room.name %></h3>
+                                    <p><%= room.description %></p>
+                                    <p>Ab <%= room.price %> € inkl. MwSt.</p>
+                                </div>
+                            </div>
+                        </a>   
+                    <% }); %>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Modal Structure -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form id="modalForm">
+                    <input type="text" id="input1" name="input1" placeholder="Name" required />
+                    <input type="text" id="input2" name="input2" placeholder="Email" required />
+                    <input type="hidden" id="roomId" name="roomId" />
+                    <button type="submit">Place Order</button>
+                </form>
+            </div>
+        </div>
+        
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+        
+            document.querySelectorAll('.grid-link').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    var roomId = this.getAttribute('data-room-id');
+                    document.getElementById('roomId').value = roomId;
+                    modal.style.display = "block";
+                });
+            });
+        
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+        
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        
+            document.getElementById('modalForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var input1= document.getElementById('input1').value;
+                var input2= document.getElementById('input2').value;
+                var roomId = document.getElementById('roomId').value;
 
-					</ul>
-			</nav>
-		</div>
-		<div class="container">
-			<section class="products">
-				<h2>Choose your Room</h2>
-				<div class="model-grid">
-					<% rooms.forEach(function(room) { %>
-						<a href="javascript:void(0);" class="grid-link" data-room-id="<%= room.id %>">
-							<div class="grid-container">
-								<img src="http://localhost:9000/roomimages/<%= room.filename %>" alt="Bild" class="top-center"/>
-								<div class="text-left">
-									<h3><%= room.name %></h3>
-									<p><%= room.description %></p>
-									<p>Ab $<%= room.price %> € inkl. MwSt.</p>
-								</div>
-							</div>
-						</a>   
-					<% }); %>
-				</div>
-			</section>
-		</div>
-		
-		<!-- Modal Structure -->
-		<div id="myModal" class="modal">
-			<div class="modal-content">
-				<span class="close">&times;</span>
-				<form id="modalForm">
-					<input type="text" id="input1" name="input1" placeholder="Name" required />
-					<input type="text" id="input2" name="input2" placeholder="Email" required />
-					<input type="hidden" id="roomId" name="roomId" />
-					<button type="submit">Submit</button>
-				</form>
-			</div>
-		</div>
-		
-		<style>
-		.modal { display: none; /* Hidden by default */ position: fixed; /* Stay in place */ z-index: 1; /* Sit on top */ padding-top: 100px; /* Location of the box */ left: 0; top: 0; width: 100%; /* Full width */ height: 100%; /* Full height */ overflow: auto; /* Enable scroll if needed */ background-color: rgb(0,0,0); /* Fallback color */ background-color: rgba(0,0,0,0.4); /* Black w/ opacity */}
-		.modal-content { background-color: #fefefe; margin: auto; padding: 20px; border: 1px solid #888; width: 80%;}
-		.close { color: #aaa; float: right; font-size: 28px; font-weight: bold;}
-		.close:hover, .close:focus { color: black; text-decoration: none; cursor: pointer;}
-		</style>
-		
-		<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			var modal = document.getElementById("myModal");
-			var span = document.getElementsByClassName("close")[0];
-		
-			document.querySelectorAll('.grid-link').forEach(function(link) {
-				link.addEventListener('click', function() {
-					var roomId = this.getAttribute('data-room-id');
-					document.getElementById('roomId').value = roomId;
-					modal.style.display = "block";
-				});
-			});
-		
-			span.onclick = function() {
-				modal.style.display = "none";
-			}
-		
-			window.onclick = function(event) {
-				if (event.target == modal) {
-					modal.style.display = "none";
-				}
-			}
-		
-			document.getElementById('modalForm').addEventListener('submit', function(event) {
-				event.preventDefault();
-				var input1= document.getElementById('input1').value;
-				var input2= document.getElementById('input2').value;
-				var roomId = document.getElementById('roomId').value;
+                var selection = {
+                    input1: input1,
+                    input2: input2,
+                    roomId: roomId,
+                };
 
-				var selection = {
-					input1: input1,
-					input2: input2,
-					roomId: roomId,
-				};
-
-				
-				
-				fetch('/placeorder', { // Change this to your actual backend endpoint
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify(selection)
-				})
-				.then(response => response.json())
-				.then(data => {
-					console.log(data); // Handle success response
-					modal.style.display = "none";
-				})
-				.catch(error => {
-					console.error('Error:', error); // Handle error
-				});
-			});
-		});
-		</script>
-		
-		</div>
+                fetch('/placeorder', { // Change this to your actual backend endpoint
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(selection)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // Handle success response
+                    modal.style.display = "none";
+                })
+                .catch(error => {
+                    console.error('Error:', error); // Handle error
+                });
+            });
+        });
+        </script>
     </main>
-	
-
+    
     <footer>
         <div class="container">
             <p>&copy;2024 Hotel Service. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
-	
 </body>
 </html>
