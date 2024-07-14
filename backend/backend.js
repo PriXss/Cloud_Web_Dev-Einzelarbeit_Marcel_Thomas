@@ -116,11 +116,17 @@ app.post('/placeorder', (req, res) => {
         body: JSON.stringify(order)
     })
     .then(res => res.json())
-    .then( 
-		res.render('ordersuccess')
+    .then( data => 
+		res.send(data)
 	)
     .catch(error => console.error('Error:', error));
 })
+
+
+app.get("/order-success", function(req, res) {
+	
+	res.render("ordersuccess")
+});
 
 
 

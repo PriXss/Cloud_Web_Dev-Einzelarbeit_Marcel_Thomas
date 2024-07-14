@@ -38,6 +38,19 @@
         display: inline-block;
         margin: 0 auto;
       }
+      button {
+        width: 30%;
+      background-color: transparent;
+        color: black;
+        border: 1px solid #ccc;
+        padding: 1em 1em;
+        cursor: pointer;
+      border-radius: 10px;
+    }
+    
+    button:hover {
+        background-color: lightgray;
+    }
     </style>
     <body>
       <div class="card">
@@ -46,6 +59,7 @@
       </div>
         <h1>Success</h1> 
         <p>We received your purchase request;<br/> we'll be in touch shortly!</p>
+        <button onclick="window.location.href='/'">Keep Discovering!</button> 
       </div>
     </body>
 </html>

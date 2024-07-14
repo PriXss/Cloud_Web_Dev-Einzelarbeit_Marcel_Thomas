@@ -103,7 +103,7 @@
                                 <div class="text-left">
                                     <h3><%= room.name %></h3>
                                     <p><%= room.description %></p>
-                                    <p>Ab <%= room.price %> € inkl. MwSt.</p>
+                                    <p>From <%= room.price %> € </p>
                                 </div>
                             </div>
                         </a>   
@@ -169,7 +169,8 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data); // Handle success response
+                    window.location.href = '/order-success';
+                    console.log(data); 
                     modal.style.display = "none";
                 })
                 .catch(error => {

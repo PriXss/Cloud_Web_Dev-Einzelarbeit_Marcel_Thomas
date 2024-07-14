@@ -8,8 +8,8 @@ body {
 
 .header {
 	background-color: white;
-	background-image: url(https://cdn.leonardo.ai/users/15dbbbdf-c85b-45f8-92af-f7ed1341a9ff/generations/4e8799df-147c-4d8f-b1d8-68346639ab09/Default_A_breathtaking_cinematic_photograph_of_the_majestic_Ho_0.jpg?w=512);
-	height:95vh;
+	background-image: url(https://www.frontsigns.com/wp-content/uploads/2022/02/luxury-hotel-lobby-designs.jpg);
+	height:91vh;
 	background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
@@ -190,6 +190,8 @@ main {
     max-width: 30%; /* Passe die Breite des Bildcontainers an */
     overflow: hidden; /* Verstecke den überstehenden Teil des Bildes */
 	border-radius: 8px;
+    margin-left: 12em;
+
 }
 
 .image {

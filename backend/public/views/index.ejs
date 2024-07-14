@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HHZ Super Cars</title>
     <link rel="stylesheet" href="../styles/styles.css">
 </head>
 <body>
     <header>
         <div class="header">
-			<h1><a href="index.html">HHZ Super Cars</a></h1>
         </div>
     </header>
     
@@ -38,7 +36,7 @@
 						</div>
 						<h3><%= room.name %></h3>
                         <p><%= room.description %></p>
-                        <p>Preis: <%= room.price %>€</p>
+                        <p>Price: <%= room.price %>€</p>
                         <button onclick="window.location.href='/rooms'">Go to Rooms</button>                    </div>
                     <% }); %>
 				</div>	
@@ -72,7 +70,7 @@
 						</div>
 						<h3><%= event.name %></h3>
                         <p><%= event.description %></p>
-                        <p>Preis: <%= event.price %>€</p>
+                        <p>Price: <%= event.price %>€</p>
                         <button onclick="window.location.href='/events'">Search for Events</button>                    </div>
                     <% }); %>
 				</div>	
