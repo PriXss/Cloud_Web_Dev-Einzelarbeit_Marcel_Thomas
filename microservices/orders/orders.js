@@ -6,10 +6,11 @@ var bodyParser  = require('body-parser');
 
 const port = 7766;
 
+const hostname = process.env.DBCONNECTION
+
 // DB credentials
 var con = mysql.createConnection({
-    host: 'localhost',
-    port: 3310,
+    host: hostname,
     user: 'test',
     password: 'testpassword',
     database: 'orders'
@@ -18,8 +19,7 @@ var con = mysql.createConnection({
 // connect servic to DB
 con.connect((err) => {
     if (err) {
-      console.error('Error connecting to MySQL database:', err);
-      return;
+        throw err;
     }
     console.log('Connected to MySQL database');
 });

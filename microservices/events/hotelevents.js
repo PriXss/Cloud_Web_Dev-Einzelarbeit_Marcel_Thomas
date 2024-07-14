@@ -4,10 +4,12 @@ const app = express();
 const port = 9096;
 
 
+const hostname = process.env.DBCONNECTION
+
+
 // Create a MySQL connection
 const db = mysql.createConnection({
-  host: 'localhost',
-  port: 3309,
+  host: hostname,
   user: 'test', // your MySQL username
   password: 'testpassword', // your MySQL password
   database: 'events',

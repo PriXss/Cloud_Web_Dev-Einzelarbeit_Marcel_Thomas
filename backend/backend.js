@@ -16,13 +16,21 @@ app.set("views", "public/views")
 
 
 
+const EVENT= process.env.EVENT
+const ROOMS= process.env.ROOMS
+const IMPRESSIONS= process.env.IMPRESSIONS
+const ORDERS = process.env.ORDERS
+const WEATHER = process.env.WEATHER
+
+
+
 app.get('/', (req, res) => {
     // Fetch data from both endpoints concurrently
     Promise.all([
-        fetch("http://localhost:9095/homepage", {
+        fetch(`http://${ROOMS}:9095/homepage`, {
             method: 'GET',
         }).then(response => response.json()),
-        fetch("http://localhost:9096/homepage", {
+        fetch(`http://${EVENT}:9096/homepage`, {
             method: 'GET',
         }).then(response => response.json())
     ])
@@ -44,7 +52,7 @@ app.get('/', (req, res) => {
 
 app.get("/rooms", function(req, res) {
 	// Invoke Product Management Microservice to get the products in the shop
-	fetch("http://localhost:9095", {
+	fetch(`http://${ROOMS}:9095`, {
 		method: 'GET',
 	})
 	.then(response => response.json())
@@ -58,7 +66,7 @@ app.get("/rooms", function(req, res) {
 
 app.get("/events", function(req, res) {
 	// Invoke Product Management Microservice to get the products in the shop
-	fetch("http://localhost:9096", {
+	fetch(`http://${EVENT}:9096`, {
 		method: 'GET',
 	})
 	.then(response => response.json())
@@ -73,7 +81,7 @@ app.get("/events", function(req, res) {
 
 app.get("/impressions", function(req, res) {
 	// Invoke Product Management Microservice to get the products in the shop
-	fetch("http://localhost:9097", {
+	fetch(`http://${IMPRESSIONS}:9097`, {
 		method: 'GET',
 	})
 	.then(response => response.json())
@@ -89,7 +97,7 @@ app.get("/impressions", function(req, res) {
 
 app.get("/weather", function(req, res) {
 	// Invoke Product Management Microservice to get the products in the shop
-	fetch("http://localhost:9098", {
+	fetch(`http://${WEATHER}:9098`, {
 		method: 'GET',
 	})
 	.then(response => response.json())
@@ -108,7 +116,7 @@ app.post('/placeorder', (req, res) => {
     let order = req.body;
 	console.log(req.body)
 	console.log(JSON.stringify(req.body))
-    fetch('http:localhost:7766', {
+    fetch(`http:${ORDERS}:7766`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -124,16 +132,9 @@ app.post('/placeorder', (req, res) => {
 
 
 app.get("/order-success", function(req, res) {
-	
 	res.render("ordersuccess")
 });
 
-
-
-/*
-app.use('/placeorder', httpProxy('http://localhost:7766'))
-
-*/
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)

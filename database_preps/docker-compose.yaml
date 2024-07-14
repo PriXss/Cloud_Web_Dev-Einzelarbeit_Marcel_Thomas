@@ -1,5 +1,6 @@
 services:
 
+#--------------------DBs, Blobs, PHPAdmins--------------------------------
   miniorooms:
     image: 'minio/minio:latest'
     ports:
@@ -10,6 +11,8 @@ services:
       - './minioRooms:/data'
     command: server --console-address ":9090" /data
     restart: always
+    networks:
+      - microservices
 
 
   minioevents:
@@ -22,6 +25,8 @@ services:
        - './minioEvents:/data'
     command: server --console-address ":9091" /data
     restart: always
+    networks:
+      - microservices
 
   minioimpressions:
     image: 'minio/minio:latest'
@@ -33,9 +38,10 @@ services:
        - './minioImpressions:/data'
     command: server --console-address ":9092" /data
     restart: always
+    networks:
+      - microservices
 
     
-
   mysqldbhotels:
     platform: linux/x86_64
     image: mysql:5.7   
@@ -51,6 +57,8 @@ services:
     volumes:
       - mysqlVolumeHotels:/var/lib/mysql
       - ./database_setup_rooms.sql:/docker-entrypoint-initdb.d/database_setup_rooms.sql
+    networks:
+      - microservices
       
   phpmyadminhotels:
     platform: linux/x86_64
@@ -61,6 +69,8 @@ services:
     restart: always
     ports:
       - 8080:80
+    networks:
+      - microservices
 
 
   mysqldbevents:
@@ -78,6 +88,8 @@ services:
       volumes:
         - mysqlVolumeEvents:/var/lib/mysql
         - ./database_setup_events.sql:/docker-entrypoint-initdb.d/database_setup_events.sql
+      networks:
+      - microservices
         
   phpmyadminevents:
       platform: linux/x86_64
@@ -88,6 +100,8 @@ services:
       restart: always
       ports:
         - 8081:80
+      networks:
+      - microservices
 
   mysqldbimpressions:
       platform: linux/x86_64
@@ -104,6 +118,8 @@ services:
       volumes:
         - mysqlVolumeImpressions:/var/lib/mysql
         - ./database_setup_impressions.sql:/docker-entrypoint-initdb.d/database_setup_impressions.sql
+      networks:
+      - microservices
         
   phpmyadminimpressions:
       platform: linux/x86_64
@@ -114,6 +130,8 @@ services:
       restart: always
       ports:
         - 8082:80
+      networks:
+      - microservices
 
   mysqldborders:
       platform: linux/x86_64
@@ -130,6 +148,8 @@ services:
       volumes:
         - mysqlVolumeOrders:/var/lib/mysql
         - ./database_setup_orders.sql:/docker-entrypoint-initdb.d/database_setup_orders.sql
+      networks:
+      - microservices
         
   phpmyadminorders:
       platform: linux/x86_64
@@ -140,7 +160,94 @@ services:
       restart: always
       ports:
         - 8087:80
+      networks:
+      - microservices
 
+#--------------------Backend, Services--------------------------------
+
+  backend:
+      build: ../backend/
+      ports:
+        - "2500:2500"
+      restart: always
+      container_name: backend
+      environment:
+        - EVENT=events-service
+        - ROOMS=rooms-service
+        - IMPRESSIONS=impression-service
+        - ORDERS=orders-service
+        - WEATHER=weather-service
+      networks:
+        - microservices
+
+
+  events-service:
+      build: ../microservices/events/
+      ports:
+        - "9096:9096"
+      restart: always
+      container_name: events-service
+      depends_on:
+        - mysqldbevents
+      environment:
+        - DBCONNECTION=mysqldbevents
+      networks:
+        - microservices
+      
+
+  rooms-service:
+      build: ../microservices/hotelrooms/
+      ports:
+        - "9095:9095"
+      restart: always
+      container_name: rooms-service
+      depends_on:
+        - mysqldbhotels
+      environment:
+        - DBCONNECTION=mysqldbhotels
+      networks:
+        - microservices
+
+
+  impression-service:
+      build: ../microservices/impressions/
+      ports:
+        - "9097:9097"
+      restart: always
+      container_name: impression-service
+      depends_on:
+        - mysqldbimpressions
+      environment:
+        - DBCONNECTION=mysqldbimpressions
+      networks:
+        - microservices
+
+  orders-service:
+      build: ../microservices/orders/
+      ports:
+        - "7766:7766"
+      restart: always
+      container_name: orders-service
+      depends_on:
+        - mysqldborders
+      environment:
+        - DBCONNECTION=mysqldborders
+      networks:
+        - microservices
+
+  weather-service:
+      build: ../microservices/weather/
+      ports:
+        - "9098:9098"
+      restart: always
+      container_name: weather-service
+      networks:
+        - microservices
+
+
+
+
+#--------------------Volumes, Networks--------------------------------
 
 volumes:
   
@@ -148,3 +255,8 @@ volumes:
   mysqlVolumeEvents:
   mysqlVolumeImpressions:
   mysqlVolumeOrders:
+
+
+networks:
+  microservices:
+    name: microservices
